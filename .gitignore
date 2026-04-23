@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# Generated data (auto-created by pipeline)
+data/raw/
+data/processed/
+
+# Trained model (generated artifact)
+models/rf_model.pkl
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env files
+.env
+.env.local
+
+# pytest cache
+.pytest_cache/
+.cache/
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml

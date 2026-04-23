@@ -1,0 +1,121 @@
+pipeline {
+    agent any
+
+    environment {
+        PYTHON = 'python3'
+        VENV   = 'venv'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Pulling latest code from repository...'
+                checkout scm
+            }
+        }
+
+        stage('Build — Install Dependencies') {
+            steps {
+                echo 'Setting up Python virtual environment...'
+                sh '''
+                    ${PYTHON} -m venv ${VENV}
+                    . ${VENV}/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Data Ingestion') {
+            steps {
+                echo 'Fetching Wine Quality dataset from UCI ML Repository...'
+                sh '''
+                    . ${VENV}/bin/activate
+                    cd pipeline && python stage1_ingest.py
+                '''
+            }
+        }
+
+        stage('Preprocessing') {
+            steps {
+                echo 'Cleaning and transforming data...'
+                sh '''
+                    . ${VENV}/bin/activate
+                    cd pipeline && python stage2_preprocess.py
+                '''
+            }
+        }
+
+        stage('Unit Tests') {
+            steps {
+                echo 'Running unit tests...'
+                sh '''
+                    . ${VENV}/bin/activate
+                    python -m pytest tests/ -v --tb=short
+                '''
+            }
+            post {
+                failure {
+                    echo 'Tests failed — pipeline stopped. No deployment.'
+                }
+            }
+        }
+
+        stage('Model Training') {
+            steps {
+                echo 'Training Random Forest classifier...'
+                sh '''
+                    . ${VENV}/bin/activate
+                    cd pipeline && python stage3_train.py
+                '''
+            }
+        }
+
+        stage('Model Evaluation') {
+            steps {
+                echo 'Evaluating model — pipeline fails if accuracy < 0.75...'
+                sh '''
+                    . ${VENV}/bin/activate
+                    cd pipeline && python stage4_test.py
+                '''
+            }
+        }
+
+        stage('Package — Generate Artifacts') {
+            steps {
+                echo 'Generating visual reports and archiving model...'
+                sh '''
+                    . ${VENV}/bin/activate
+                    cd pipeline && python stage5_visualize.py
+                '''
+                archiveArtifacts artifacts: 'models/rf_model.pkl, outputs/plots/*.png', fingerprint: true
+            }
+        }
+
+        stage('Deploy / Publish Results') {
+            steps {
+                echo 'Publishing output plots as build artifacts...'
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'outputs/plots',
+                    reportFiles: '*.png',
+                    reportName: 'ML Pipeline Results'
+                ])
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline SUCCESS — model trained, evaluated, plots generated.'
+        }
+        failure {
+            echo 'Pipeline FAILED — check stage logs above.'
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
