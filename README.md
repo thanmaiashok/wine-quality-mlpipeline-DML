@@ -71,8 +71,8 @@ Top predictor: `alcohol` content (importance score: 0.174)
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/your-username/mlops-wine-pipeline.git
-cd mlops-wine-pipeline
+git clone https://github.com/thanmaiashok/wine-quality-mlpipeline-DML-.git
+cd wine-quality-mlpipeline-DML-
 
 # 2. Create virtual environment
 python3 -m venv venv
@@ -110,7 +110,7 @@ pytest tests/ -v
 ## Project Structure
 
 ```
-mlops-wine-pipeline/
+wine-quality-mlpipeline-DML-/
 ├── Jenkinsfile                  # Jenkins pipeline definition
 ├── README.md
 ├── requirements.txt
