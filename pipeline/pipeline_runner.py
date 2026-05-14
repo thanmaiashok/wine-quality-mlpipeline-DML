@@ -1,6 +1,9 @@
 """Main pipeline runner — executes all stages sequentially, stops on failure (mirrors Jenkins behavior)"""
 import sys
+import os
 import time
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'etl'))
 
 def run_stage(name, fn):
     print(f"\n{'='*60}")

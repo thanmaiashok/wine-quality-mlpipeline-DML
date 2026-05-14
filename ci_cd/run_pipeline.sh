@@ -3,7 +3,8 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$SCRIPT_DIR"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$ROOT_DIR"
 
 echo "=============================================="
 echo "  CI/CD ML PIPELINE — Local Execution"
@@ -16,11 +17,11 @@ pip install -r requirements.txt -q
 
 echo ""
 echo "[INGEST] Fetching dataset..."
-cd pipeline && python stage1_ingest.py && cd ..
+cd etl && python stage1_ingest.py && cd "$ROOT_DIR"
 
 echo ""
 echo "[PREPROCESS] Processing data..."
-cd pipeline && python stage2_preprocess.py && cd ..
+cd etl && python stage2_preprocess.py && cd "$ROOT_DIR"
 
 echo ""
 echo "[TEST] Running unit tests..."
@@ -28,15 +29,15 @@ python -m pytest tests/ -v --tb=short
 
 echo ""
 echo "[TRAIN] Training model..."
-cd pipeline && python stage3_train.py && cd ..
+cd pipeline && python stage3_train.py && cd "$ROOT_DIR"
 
 echo ""
 echo "[EVALUATE] Evaluating model..."
-cd pipeline && python stage4_test.py && cd ..
+cd pipeline && python stage4_test.py && cd "$ROOT_DIR"
 
 echo ""
 echo "[VISUALIZE] Generating plots..."
-cd pipeline && python stage5_visualize.py && cd ..
+cd pipeline && python stage5_visualize.py && cd "$ROOT_DIR"
 
 echo ""
 echo "=============================================="

@@ -31,7 +31,7 @@ pipeline {
                 echo 'Fetching Wine Quality dataset from UCI ML Repository...'
                 sh '''
                     . ${VENV}/bin/activate
-                    cd pipeline && python stage1_ingest.py
+                    cd etl && python stage1_ingest.py
                 '''
             }
         }
@@ -41,7 +41,7 @@ pipeline {
                 echo 'Cleaning and transforming data...'
                 sh '''
                     . ${VENV}/bin/activate
-                    cd pipeline && python stage2_preprocess.py
+                    cd etl && python stage2_preprocess.py
                 '''
             }
         }
