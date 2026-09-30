@@ -1,4 +1,5 @@
 <p align="center"><img src="docs/flow.svg" alt="Animated MLOps Wine Pipeline pipeline: Ingest → Preprocess → Train → Gate → Visualize" width="100%"/></p>
+
 <p align="center"><sub>10-second tour: Ingest → Preprocess → Train → Gate → Visualize</sub></p>
 
 <p align="center"><img src="docs/mc/intro.svg" width="100%" alt="Jenkins-style CI/CD pipeline for machine learning: data ingestion, preprocessing, training, an evaluation gate and visual reporting."/></p>
@@ -65,6 +66,7 @@ Top predictor: `alcohol` content (importance score: 0.174)
 
 <a id="prerequisites"></a>
 <h3><img src="docs/mc/h3-prerequisites.svg" width="100%" alt="Prerequisites"/></h3>
+
 - Python 3.9+
 - `venv` or any virtual environment
 
