@@ -1,5 +1,8 @@
 # MLOps Wine Pipeline
 
+<p align="center"><img src="docs/flow.svg" alt="Animated MLOps Wine Pipeline pipeline: Ingest → Preprocess → Train → Gate → Visualize" width="100%"/></p>
+<p align="center"><sub>10-second tour: Ingest → Preprocess → Train → Gate → Visualize</sub></p>
+
 > **Jenkins-style CI/CD pipeline for machine learning** — automated data ingestion, preprocessing, model training, evaluation gate, and visual reporting. Built with Python + scikit-learn, deployable via Jenkins or run locally in one command.
 
 ---
