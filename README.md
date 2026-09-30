@@ -9,9 +9,7 @@
 <a id="what-it-does"></a>
 <h2><img src="docs/mc/h2-what-it-does.svg" width="100%" alt="What It Does"/></h2>
 
-Predicts **red wine quality** (High / Low) from 11 chemical lab measurements — no human taster needed.
-
-Pipeline mirrors real DevOps CI/CD stages:
+<p align="center"><img src="docs/mc/t-01.svg" width="100%" alt="Predicts red wine quality (High / Low) from 11 chemical lab measurements - no human taster needed. Pipeline mirrors real DevOps CI/CD stages:"/></p>
 
 ```
 Ingest → Preprocess → Train → Evaluate → Visualize
@@ -21,45 +19,24 @@ CSV from    split      Forest   must ≥ 75%  output
 UCI Repo    data       100 trees  or FAIL   charts
 ```
 
-If evaluation fails → pipeline stops. Nothing deploys. Same behavior as Jenkins build gate.
+<p align="center"><img src="docs/mc/t-02.svg" width="100%" alt="If evaluation fails -&gt; pipeline stops. Nothing deploys. Same behavior as Jenkins build gate."/></p>
 
 <a id="dataset"></a>
 <h2><img src="docs/mc/h2-dataset.svg" width="100%" alt="Dataset"/></h2>
 
-| Property | Value |
-|----------|-------|
-| Name | UCI Wine Quality (Red) |
-| Source | [UC Irvine ML Repository](https://archive.ics.uci.edu/ml/datasets/wine+quality) |
-| Rows | 1,599 wine samples |
-| Features | 11 chemical measurements (alcohol, pH, acidity, etc.) |
-| Target | Quality score → binary: High (≥7) / Low (<7) |
-| Format | CSV (auto-downloaded, no manual setup) |
+<p align="center"><img src="docs/mc/t-03.svg" width="100%" alt="Property | Value Name | UCI Wine Quality (Red) Source | UC Irvine ML Repository Rows | 1,599 wine samples Features | 11 chemical measurements (alcohol, pH, acidity, etc.) Target | Quality score -&gt; binary: High (&gt;=7) / Low (&lt;7) Format | CSV (auto-downloaded, no manual setup)"/></p>
+
+<p align="center"><a href="https://archive.ics.uci.edu/ml/datasets/wine+quality"><img src="docs/mc/link-01.svg" height="34" alt="UC Irvine ML Repository"/></a></p>
 
 <a id="results"></a>
 <h2><img src="docs/mc/h2-results.svg" width="100%" alt="Results"/></h2>
 
-| Metric | Score |
-|--------|-------|
-| Accuracy | **94.06%** |
-| ROC-AUC | **0.955** |
-| F1 Score | 0.732 |
-| Train size | 1,279 samples |
-| Test size | 320 samples |
-
-Top predictor: `alcohol` content (importance score: 0.174)
+<p align="center"><img src="docs/mc/t-04.svg" width="100%" alt="Metric | Score Accuracy | 94.06% ROC-AUC | 0.955 F1 Score | 0.732 Train size | 1,279 samples Test size | 320 samples Top predictor: alcohol content (importance score: 0.174)"/></p>
 
 <a id="output-plots"></a>
 <h3><img src="docs/mc/h3-output-plots.svg" width="100%" alt="Output Plots"/></h3>
 
-| Plot | Description |
-|------|-------------|
-| `0_pipeline_report.png` | Full pipeline execution dashboard |
-| `1_quality_distribution.png` | Quality score distribution + class balance |
-| `2_feature_correlations.png` | Feature correlation heatmap |
-| `3_feature_distributions.png` | Key features by quality class (box plots) |
-| `4_feature_importance.png` | Random Forest feature importance ranking |
-| `5_confusion_matrix.png` | Confusion matrix (275 correct low, 26 correct high) |
-| `6_roc_curve.png` | ROC curve (AUC = 0.955) |
+<p align="center"><img src="docs/mc/t-05.svg" width="100%" alt="Plot | Description 0_pipeline_report.png | Full pipeline execution dashboard 1_quality_distribution.png | Quality score distribution + class balance 2_feature_correlations.png | Feature correlation heatmap 3_feature_distributions.png | Key features by quality class (box plots) 4_feature_importance.png | Random Forest feature importance ranking 5_confusion_matrix.png | Confusion matrix (275 correct low, 26 correct high) 6_roc_curve.png | ROC curve (AUC = 0.955)"/></p>
 
 <a id="quick-start"></a>
 <h2><img src="docs/mc/h2-quick-start.svg" width="100%" alt="Quick Start"/></h2>
@@ -67,8 +44,7 @@ Top predictor: `alcohol` content (importance score: 0.174)
 <a id="prerequisites"></a>
 <h3><img src="docs/mc/h3-prerequisites.svg" width="100%" alt="Prerequisites"/></h3>
 
-- Python 3.9+
-- `venv` or any virtual environment
+<p align="center"><img src="docs/mc/t-06.svg" width="100%" alt="Python 3.9+ venv or any virtual environment"/></p>
 
 <a id="run-locally"></a>
 <h3><img src="docs/mc/h3-run-locally.svg" width="100%" alt="Run Locally"/></h3>
@@ -90,7 +66,7 @@ chmod +x run_pipeline.sh
 ./run_pipeline.sh
 ```
 
-Or run individual stages:
+<p align="center"><img src="docs/mc/t-07.svg" width="100%" alt="Or run individual stages:"/></p>
 
 ```bash
 cd pipeline
@@ -147,39 +123,16 @@ wine-quality-mlpipeline-DML-/
 <a id="jenkins-setup"></a>
 <h2><img src="docs/mc/h2-jenkins-setup.svg" width="100%" alt="Jenkins Setup"/></h2>
 
-1. Create new Pipeline job in Jenkins
-2. Point to this repo
-3. Jenkins reads `Jenkinsfile` automatically
-4. Pipeline stages map 1:1 to Python scripts
-5. Build artifacts: `models/rf_model.pkl` + all plots
-
-Stages in Jenkinsfile:
-- **Checkout** → pull latest code
-- **Build** → install `requirements.txt`
-- **Data Ingestion** → `stage1_ingest.py`
-- **Preprocessing** → `stage2_preprocess.py`
-- **Unit Tests** → `pytest tests/`
-- **Model Training** → `stage3_train.py`
-- **Model Evaluation** → `stage4_test.py` ← pipeline fails here if accuracy < 0.75
-- **Package** → `stage5_visualize.py` + archive artifacts
-- **Deploy** → publish plots as build artifacts
+<p align="center"><img src="docs/mc/t-08.svg" width="100%" alt="Create new Pipeline job in Jenkins Point to this repo Jenkins reads Jenkinsfile automatically Pipeline stages map 1:1 to Python scripts Build artifacts: models/rf_model.pkl + all plots Stages in Jenkinsfile: Checkout -&gt; pull latest code Build -&gt; install requirements.txt Data Ingestion -&gt; stage1_ingest.py Preprocessing -&gt; stage2_preprocess.py Unit Tests -&gt; pytest tests/ Model Training -&gt; stage3_train.py Model Evaluation -&gt; stage4_test.py &lt;- pipeline fails here if accuracy &lt; 0.75 Package -&gt; stage5_visualize.py + archive artifacts Deploy -&gt; publish plots as build artifacts"/></p>
 
 <a id="tech-stack"></a>
 <h2><img src="docs/mc/h2-tech-stack.svg" width="100%" alt="Tech Stack"/></h2>
 
-| Tool | Purpose |
-|------|---------|
-| Python 3.9+ | Core language |
-| scikit-learn | Random Forest, metrics, preprocessing |
-| pandas / numpy | Data manipulation |
-| matplotlib / seaborn | Visualizations |
-| pytest | Unit testing |
-| joblib | Model serialization |
-| Jenkins | CI/CD orchestration |
+<p align="center"><img src="docs/mc/t-09.svg" width="100%" alt="Tool | Purpose Python 3.9+ | Core language scikit-learn | Random Forest, metrics, preprocessing pandas / numpy | Data manipulation matplotlib / seaborn | Visualizations pytest | Unit testing joblib | Model serialization Jenkins | CI/CD orchestration"/></p>
 
 <a id="license"></a>
 <h2><img src="docs/mc/h2-license.svg" width="100%" alt="License"/></h2>
 
-MIT — free to use, modify, distribute.
+<p align="center"><img src="docs/mc/t-10.svg" width="100%" alt="MIT - free to use, modify, distribute."/></p>
 
 <p align="center"><a href="https://github.com/thanmaiashok"><img src="docs/mc/footer.svg" width="100%" alt="Built by Thanmai A, founder of FoxynAI"/></a></p>
