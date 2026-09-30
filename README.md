@@ -11,10 +11,7 @@
 
 <p align="center"><img src="docs/px3/t-01.svg" width="100%" alt="Predicts red wine quality (High / Low) from 11 chemical lab measurements - no human taster needed. Pipeline mirrors real DevOps CI/CD stages:"/></p>
 
-<p align="center"><img src="docs/px3/c-01.svg" width="100%" alt="code: Ingest → Preprocess → Train → Evaluate → Visualize ↓ ↓ ↓ ↓ ↓ Download Clean &amp; Random Gate: acc 6 visual CSV from split Forest must ≥ 75% output UCI Repo data 10"/></p>
-
-<details>
-<summary><img src="docs/px3/copy-btn.svg" height="40" alt="Copy code: click to open"/></summary>
+<p align="center"><img src="docs/px3/bar-code.svg" width="100%" alt="code code"/></p>
 
 ```
 Ingest → Preprocess → Train → Evaluate → Visualize
@@ -23,8 +20,6 @@ Download    Clean &    Random   Gate: acc   6 visual
 CSV from    split      Forest   must ≥ 75%  output
 UCI Repo    data       100 trees  or FAIL   charts
 ```
-
-</details>
 
 <p align="center"><img src="docs/px3/t-02.svg" width="100%" alt="If evaluation fails -&gt; pipeline stops. Nothing deploys. Same behavior as Jenkins build gate."/></p>
 
@@ -56,10 +51,7 @@ UCI Repo    data       100 trees  or FAIL   charts
 <a id="run-locally"></a>
 <h3><img src="docs/px3/h3-run-locally.svg" width="100%" alt="Run Locally"/></h3>
 
-<p align="center"><img src="docs/px3/c-02.svg" width="100%" alt="code: # 1. Clone repo git clone https://github.com/thanmaiashok/wine-quality-mlpipeline-DML-.git cd wine-quality-mlpipeline-DML- # 2. Create virtual environment pytho"/></p>
-
-<details>
-<summary><img src="docs/px3/copy-btn.svg" height="40" alt="Copy code: click to open"/></summary>
+<p align="center"><img src="docs/px3/bar-bash.svg" width="100%" alt="bash code"/></p>
 
 ```bash
 # 1. Clone repo
@@ -78,14 +70,9 @@ chmod +x run_pipeline.sh
 ./run_pipeline.sh
 ```
 
-</details>
-
 <p align="center"><img src="docs/px3/t-07.svg" width="100%" alt="Or run individual stages:"/></p>
 
-<p align="center"><img src="docs/px3/c-03.svg" width="100%" alt="code: cd pipeline python stage1_ingest.py # Download dataset python stage2_preprocess.py # Clean + split python stage3_train.py # Train model python stage4_test.py # "/></p>
-
-<details>
-<summary><img src="docs/px3/copy-btn.svg" height="40" alt="Copy code: click to open"/></summary>
+<p align="center"><img src="docs/px3/bar-bash.svg" width="100%" alt="bash code"/></p>
 
 ```bash
 cd pipeline
@@ -97,30 +84,20 @@ python stage5_visualize.py    # Generate plots
 python generate_report.py     # Generate report chart + markdown
 ```
 
-</details>
-
 <a id="run-tests"></a>
 <h3><img src="docs/px3/h3-run-tests.svg" width="100%" alt="Run Tests"/></h3>
 
-<p align="center"><img src="docs/px3/c-04.svg" width="100%" alt="code: source venv/bin/activate pytest tests/ -v "/></p>
-
-<details>
-<summary><img src="docs/px3/copy-btn.svg" height="40" alt="Copy code: click to open"/></summary>
+<p align="center"><img src="docs/px3/bar-bash.svg" width="100%" alt="bash code"/></p>
 
 ```bash
 source venv/bin/activate
 pytest tests/ -v
 ```
 
-</details>
-
 <a id="project-structure"></a>
 <h2><img src="docs/px3/h2-project-structure.svg" width="100%" alt="Project Structure"/></h2>
 
-<p align="center"><img src="docs/px3/c-05.svg" width="100%" alt="code: wine-quality-mlpipeline-DML-/ ├── Jenkinsfile # Jenkins pipeline definition ├── README.md ├── requirements.txt ├── run_pipeline.sh # One-command local runner │ "/></p>
-
-<details>
-<summary><img src="docs/px3/copy-btn.svg" height="40" alt="Copy code: click to open"/></summary>
+<p align="center"><img src="docs/px3/bar-code.svg" width="100%" alt="code code"/></p>
 
 ```
 wine-quality-mlpipeline-DML-/
@@ -152,8 +129,6 @@ wine-quality-mlpipeline-DML-/
 └── tests/
     └── test_pipeline.py         # Unit tests (pytest)
 ```
-
-</details>
 
 <a id="jenkins-setup"></a>
 <h2><img src="docs/px3/h2-jenkins-setup.svg" width="100%" alt="Jenkins Setup"/></h2>
