@@ -1,13 +1,12 @@
-# MLOps Wine Pipeline
-
 <p align="center"><img src="docs/flow.svg" alt="Animated MLOps Wine Pipeline pipeline: Ingest → Preprocess → Train → Gate → Visualize" width="100%"/></p>
 <p align="center"><sub>10-second tour: Ingest → Preprocess → Train → Gate → Visualize</sub></p>
 
-> **Jenkins-style CI/CD pipeline for machine learning** — automated data ingestion, preprocessing, model training, evaluation gate, and visual reporting. Built with Python + scikit-learn, deployable via Jenkins or run locally in one command.
+<p align="center"><img src="docs/mc/intro.svg" width="100%" alt="Jenkins-style CI/CD pipeline for machine learning: data ingestion, preprocessing, training, an evaluation gate and visual reporting."/></p>
 
----
+<p align="center"><img src="docs/mc/features.svg" width="100%" alt="Key features"/></p>
 
-## What It Does
+<a id="what-it-does"></a>
+<h2><img src="docs/mc/h2-what-it-does.svg" width="100%" alt="What It Does"/></h2>
 
 Predicts **red wine quality** (High / Low) from 11 chemical lab measurements — no human taster needed.
 
@@ -23,9 +22,8 @@ UCI Repo    data       100 trees  or FAIL   charts
 
 If evaluation fails → pipeline stops. Nothing deploys. Same behavior as Jenkins build gate.
 
----
-
-## Dataset
+<a id="dataset"></a>
+<h2><img src="docs/mc/h2-dataset.svg" width="100%" alt="Dataset"/></h2>
 
 | Property | Value |
 |----------|-------|
@@ -36,9 +34,8 @@ If evaluation fails → pipeline stops. Nothing deploys. Same behavior as Jenkin
 | Target | Quality score → binary: High (≥7) / Low (<7) |
 | Format | CSV (auto-downloaded, no manual setup) |
 
----
-
-## Results
+<a id="results"></a>
+<h2><img src="docs/mc/h2-results.svg" width="100%" alt="Results"/></h2>
 
 | Metric | Score |
 |--------|-------|
@@ -50,7 +47,8 @@ If evaluation fails → pipeline stops. Nothing deploys. Same behavior as Jenkin
 
 Top predictor: `alcohol` content (importance score: 0.174)
 
-### Output Plots
+<a id="output-plots"></a>
+<h3><img src="docs/mc/h3-output-plots.svg" width="100%" alt="Output Plots"/></h3>
 
 | Plot | Description |
 |------|-------------|
@@ -62,15 +60,16 @@ Top predictor: `alcohol` content (importance score: 0.174)
 | `5_confusion_matrix.png` | Confusion matrix (275 correct low, 26 correct high) |
 | `6_roc_curve.png` | ROC curve (AUC = 0.955) |
 
----
+<a id="quick-start"></a>
+<h2><img src="docs/mc/h2-quick-start.svg" width="100%" alt="Quick Start"/></h2>
 
-## Quick Start
-
-### Prerequisites
+<a id="prerequisites"></a>
+<h3><img src="docs/mc/h3-prerequisites.svg" width="100%" alt="Prerequisites"/></h3>
 - Python 3.9+
 - `venv` or any virtual environment
 
-### Run Locally
+<a id="run-locally"></a>
+<h3><img src="docs/mc/h3-run-locally.svg" width="100%" alt="Run Locally"/></h3>
 
 ```bash
 # 1. Clone repo
@@ -101,16 +100,16 @@ python stage5_visualize.py    # Generate plots
 python generate_report.py     # Generate report chart + markdown
 ```
 
-### Run Tests
+<a id="run-tests"></a>
+<h3><img src="docs/mc/h3-run-tests.svg" width="100%" alt="Run Tests"/></h3>
 
 ```bash
 source venv/bin/activate
 pytest tests/ -v
 ```
 
----
-
-## Project Structure
+<a id="project-structure"></a>
+<h2><img src="docs/mc/h2-project-structure.svg" width="100%" alt="Project Structure"/></h2>
 
 ```
 wine-quality-mlpipeline-DML-/
@@ -143,9 +142,8 @@ wine-quality-mlpipeline-DML-/
     └── test_pipeline.py         # Unit tests (pytest)
 ```
 
----
-
-## Jenkins Setup
+<a id="jenkins-setup"></a>
+<h2><img src="docs/mc/h2-jenkins-setup.svg" width="100%" alt="Jenkins Setup"/></h2>
 
 1. Create new Pipeline job in Jenkins
 2. Point to this repo
@@ -164,9 +162,8 @@ Stages in Jenkinsfile:
 - **Package** → `stage5_visualize.py` + archive artifacts
 - **Deploy** → publish plots as build artifacts
 
----
-
-## Tech Stack
+<a id="tech-stack"></a>
+<h2><img src="docs/mc/h2-tech-stack.svg" width="100%" alt="Tech Stack"/></h2>
 
 | Tool | Purpose |
 |------|---------|
@@ -178,8 +175,9 @@ Stages in Jenkinsfile:
 | joblib | Model serialization |
 | Jenkins | CI/CD orchestration |
 
----
-
-## License
+<a id="license"></a>
+<h2><img src="docs/mc/h2-license.svg" width="100%" alt="License"/></h2>
 
 MIT — free to use, modify, distribute.
+
+<p align="center"><a href="https://github.com/thanmaiashok"><img src="docs/mc/footer.svg" width="100%" alt="Built by Thanmai A, founder of FoxynAI"/></a></p>
