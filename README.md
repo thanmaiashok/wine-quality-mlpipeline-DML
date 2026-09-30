@@ -11,15 +11,7 @@
 
 <p align="center"><img src="docs/px3/t-01.svg" width="100%" alt="Predicts red wine quality (High / Low) from 11 chemical lab measurements - no human taster needed. Pipeline mirrors real DevOps CI/CD stages:"/></p>
 
-<p align="center"><img src="docs/px3/bar-code.svg" width="100%" alt="code code"/></p>
-
-```
-Ingest → Preprocess → Train → Evaluate → Visualize
-  ↓           ↓          ↓        ↓           ↓
-Download    Clean &    Random   Gate: acc   6 visual
-CSV from    split      Forest   must ≥ 75%  output
-UCI Repo    data       100 trees  or FAIL   charts
-```
+<p align="center"><img src="docs/px3/c-01.svg" width="100%" alt="code: Ingest → Preprocess → Train → Evaluate → Visualize ↓ ↓ ↓ ↓ ↓ Download Clean &amp; Random Gate: acc 6 visual CSV from split Forest must ≥ 75% output UCI Repo data 10"/></p>
 
 <p align="center"><img src="docs/px3/t-02.svg" width="100%" alt="If evaluation fails -&gt; pipeline stops. Nothing deploys. Same behavior as Jenkins build gate."/></p>
 
@@ -51,84 +43,21 @@ UCI Repo    data       100 trees  or FAIL   charts
 <a id="run-locally"></a>
 <h3><img src="docs/px3/h3-run-locally.svg" width="100%" alt="Run Locally"/></h3>
 
-<p align="center"><img src="docs/px3/bar-bash.svg" width="100%" alt="bash code"/></p>
-
-```bash
-# 1. Clone repo
-git clone https://github.com/thanmaiashok/wine-quality-mlpipeline-DML-.git
-cd wine-quality-mlpipeline-DML-
-
-# 2. Create virtual environment
-python3 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run full pipeline
-chmod +x run_pipeline.sh
-./run_pipeline.sh
-```
+<p align="center"><img src="docs/px3/c-02.svg" width="100%" alt="code: # 1. Clone repo git clone https://github.com/thanmaiashok/wine-quality-mlpipeline-DML-.git cd wine-quality-mlpipeline-DML- # 2. Create virtual environment pytho"/></p>
 
 <p align="center"><img src="docs/px3/t-07.svg" width="100%" alt="Or run individual stages:"/></p>
 
-<p align="center"><img src="docs/px3/bar-bash.svg" width="100%" alt="bash code"/></p>
-
-```bash
-cd pipeline
-python stage1_ingest.py       # Download dataset
-python stage2_preprocess.py   # Clean + split
-python stage3_train.py        # Train model
-python stage4_test.py         # Evaluate (fails if acc < 0.75)
-python stage5_visualize.py    # Generate plots
-python generate_report.py     # Generate report chart + markdown
-```
+<p align="center"><img src="docs/px3/c-03.svg" width="100%" alt="code: cd pipeline python stage1_ingest.py # Download dataset python stage2_preprocess.py # Clean + split python stage3_train.py # Train model python stage4_test.py # "/></p>
 
 <a id="run-tests"></a>
 <h3><img src="docs/px3/h3-run-tests.svg" width="100%" alt="Run Tests"/></h3>
 
-<p align="center"><img src="docs/px3/bar-bash.svg" width="100%" alt="bash code"/></p>
-
-```bash
-source venv/bin/activate
-pytest tests/ -v
-```
+<p align="center"><img src="docs/px3/c-04.svg" width="100%" alt="code: source venv/bin/activate pytest tests/ -v "/></p>
 
 <a id="project-structure"></a>
 <h2><img src="docs/px3/h2-project-structure.svg" width="100%" alt="Project Structure"/></h2>
 
-<p align="center"><img src="docs/px3/bar-code.svg" width="100%" alt="code code"/></p>
-
-```
-wine-quality-mlpipeline-DML-/
-├── Jenkinsfile                  # Jenkins pipeline definition
-├── README.md
-├── requirements.txt
-├── run_pipeline.sh              # One-command local runner
-│
-├── pipeline/
-│   ├── pipeline_runner.py       # Main entry point (runs all stages)
-│   ├── stage1_ingest.py         # Stage 1: Download CSV from UCI
-│   ├── stage2_preprocess.py     # Stage 2: Clean, scale, split
-│   ├── stage3_train.py          # Stage 3: Train Random Forest
-│   ├── stage4_test.py           # Stage 4: Evaluate + pipeline gate
-│   ├── stage5_visualize.py      # Stage 5: Generate 6 plots
-│   └── generate_report.py       # Generate summary dashboard
-│
-├── data/
-│   ├── winedataset.md           # Dataset documentation
-│   ├── raw/                     # Auto-downloaded CSV (git-ignored)
-│   └── processed/               # Train/test splits (git-ignored)
-│
-├── models/                      # Saved model + metrics (git-ignored)
-│
-├── outputs/
-│   ├── pipeline_report.md       # Execution report
-│   └── plots/                   # 7 output PNG charts
-│
-└── tests/
-    └── test_pipeline.py         # Unit tests (pytest)
-```
+<p align="center"><img src="docs/px3/c-05.svg" width="100%" alt="code: wine-quality-mlpipeline-DML-/ ├── Jenkinsfile # Jenkins pipeline definition ├── README.md ├── requirements.txt ├── run_pipeline.sh # One-command local runner │ "/></p>
 
 <a id="jenkins-setup"></a>
 <h2><img src="docs/px3/h2-jenkins-setup.svg" width="100%" alt="Jenkins Setup"/></h2>
